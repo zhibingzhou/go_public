@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"common"
+	"github.com/zhibingzhou/go_public/common"
 
 	"github.com/garyburd/redigo/redis"
 )

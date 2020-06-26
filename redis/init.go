@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"public/common"
+	"common"
 
 	"github.com/garyburd/redigo/redis"
 )

@@ -23,23 +23,22 @@ func init() {
 }
 
 func ReloadConf(file_name string) {
-     conf_byte := []byte
-     var json_conf map[string]string
+	var conf_byte []byte
+	var json_conf map[string]string
 
 	if file_name == "" {
 		file_name = "./conf/redis.json"
-		conf_byte, err = common.ReadFile(file_name)
+		conf_byte, err := common.ReadFile(file_name)
 		if err != nil {
 			panic(err)
 			return
 		}
 	} else {
-      conf_byte = []byte(file_name)
+		conf_byte = []byte(file_name)
 	}
 
-	
 	//解析json格式
-	err = json.Unmarshal(conf_byte, &json_conf)
+	err := json.Unmarshal(conf_byte, &json_conf)
 	if err != nil {
 		panic(err)
 	}

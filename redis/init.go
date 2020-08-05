@@ -33,15 +33,20 @@ func ReloadConf(file_name string) {
 			panic(err)
 			return
 		}
+		//解析json格式
+		err := json.Unmarshal(conf_byte, &json_conf)
+		if err != nil {
+			panic(err)
+		}
 	} else {
 		conf_byte = []byte(file_name)
+		//解析json格式
+		err := json.Unmarshal(conf_byte, &json_conf)
+		if err != nil {
+			panic(err)
+		}
 	}
 
-	//解析json格式
-	err := json.Unmarshal(conf_byte, &json_conf)
-	if err != nil {
-		panic(err)
-	}
 	r_time, _ := time.ParseDuration(json_conf["read_time"])
 	db, _ := strconv.Atoi(json_conf["db"])
 	c_time, _ := time.ParseDuration(json_conf["connect_time"])

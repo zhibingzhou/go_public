@@ -20,19 +20,24 @@ type RedisPool struct {
 var RediGo *RedisPool
 
 func init() {
-	ReloadConf("")
 }
 
 func ReloadConf(file_name string) {
+     conf_byte := []byte
+     var json_conf map[string]string
+
 	if file_name == "" {
 		file_name = "./conf/redis.json"
-	}
-	conf_byte, err := common.ReadFile(file_name)
-	if err != nil {
-		panic(err)
+		conf_byte, err = common.ReadFile(file_name)
+		if err != nil {
+			panic(err)
+			return
+		}
+	} else {
+      conf_byte = []byte(file_name)
 	}
 
-	var json_conf map[string]string
+	
 	//解析json格式
 	err = json.Unmarshal(conf_byte, &json_conf)
 	if err != nil {

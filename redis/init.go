@@ -23,7 +23,6 @@ func init() {
 }
 
 func ReloadConf(file_name string) {
-	var conf_byte []byte
 	var json_conf map[string]string
 
 	if file_name == "" {
@@ -34,14 +33,14 @@ func ReloadConf(file_name string) {
 			return
 		}
 		//解析json格式
-		err := json.Unmarshal(conf_byte, &json_conf)
+		err = json.Unmarshal(conf_byte, &json_conf)
 		if err != nil {
 			panic(err)
 		}
 	} else {
-		conf_byte = []byte(file_name)
+		conf_bytes := []byte(file_name)
 		//解析json格式
-		err := json.Unmarshal(conf_byte, &json_conf)
+		err := json.Unmarshal(conf_bytes, &json_conf)
 		if err != nil {
 			panic(err)
 		}
